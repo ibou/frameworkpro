@@ -25,6 +25,9 @@
   },
   "require": {
     "nikic/fast-route": "dev-master",
-    "psr/container": "^2.0@dev"
+    "psr/container": "^2.0@dev",
+    "league/container": "5.x-dev",
+    "symfony/dotenv": "7.2.x-dev",
+    "twig/twig": "4.x-dev"
   }
 }

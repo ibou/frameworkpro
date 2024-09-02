@@ -23,8 +23,7 @@
         "symfony/var-dumper": "^7.1"
     },
     "require": {
-        "hiboutech/php-framework-pro": "dev-main",
-        "league/container": "5.x-dev",
-        "symfony/dotenv": "7.2.x-dev"
+        "hiboutech/php-framework-pro": "dev-main"
+
     }
 }
