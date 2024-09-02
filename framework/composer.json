@@ -1,0 +1,23 @@
+{
+  "name": "hiboutech/php-framework-pro",
+  "description": "A PHP framework tutorial project",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "idiallo",
+      "email": "iboudiallo84@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "HibouTech\\Framework\\": "src/"
+    }
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^7.1"
+  },
+  "require": {
+    "nikic/fast-route": "dev-master"
+  }
+}

@@ -1,12 +1,10 @@
 {
-    "name": "hiboutech/php-framework-pro",
+    "name": "hiboutech/webapp",
+    "description": "A simple PHP Application",
     "minimum-stability": "dev",
-    "type": "library",
-    "description": "A simple PHP framework",
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
-            "HibouTech\\Framework\\": "framework/"
+            "App\\": "src/"
         }
     },
     "authors": [
@@ -15,10 +13,16 @@
             "email": "iboudiallo84@gmail.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "framework"
+        }
+    ],
     "require-dev": {
         "symfony/var-dumper": "^7.1"
     },
     "require": {
-        "nikic/fast-route": "^2.0@dev"
+        "hiboutech/php-framework-pro": "dev-main"
     }
 }
