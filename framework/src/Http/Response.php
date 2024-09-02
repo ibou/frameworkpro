@@ -6,6 +6,8 @@ namespace HibouTech\Framework\Http;
 
 class Response
 {
+  public const HTTP_INTERNAL_SERVER_ERROR = 500;
+  
   public function __construct(
     public readonly string $content = '',
     public readonly int $status = 200,

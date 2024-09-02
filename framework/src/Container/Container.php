@@ -36,7 +36,6 @@ class Container implements ContainerInterface
 
     $object = $this->resolve($this->services[$id]);
 
-    \dump($object);
     return $object;
   }
 
