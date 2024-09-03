@@ -1,17 +1,23 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
 namespace App\Controller;
 
+use HibouTech\Framework\Controller\AbstractController;
 use HibouTech\Framework\Http\Response;
 
-class PostsController
+class PostsController extends AbstractController
 {
   public function show(int $id): Response
   {
-    $content = "This is <b>post $id</b>";
+    return $this->render("post.html.twig", [
+      'postId' => $id
+    ]);
+  }
 
-    return new Response($content);
+  public function create(): Response
+  {
+    return $this->render("create-post.html.twig");
   }
 }

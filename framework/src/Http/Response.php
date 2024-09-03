@@ -7,9 +7,9 @@ namespace HibouTech\Framework\Http;
 class Response
 {
   public const HTTP_INTERNAL_SERVER_ERROR = 500;
-  
+
   public function __construct(
-    public readonly string $content = '',
+    public string $content = '',
     public readonly int $status = 200,
     public readonly array $headers = [],
   ) {
@@ -23,5 +23,10 @@ class Response
     }
 
     echo $this->content;
+  }
+
+  public function setContent(?string $content): void
+  {
+    $this->content = $content;
   }
 }
