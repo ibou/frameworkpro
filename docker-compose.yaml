@@ -2,6 +2,7 @@ services:
     # server
     web:
         image: garyclarke/php-framework-web
+        container_name: php-framework-web
         volumes:
             - ./public:/var/www/html/public
         ports:
@@ -9,6 +10,7 @@ services:
     # application
     app:
         image: garyclarke/php-framework-app
+        container_name: php-framework-app
         volumes:
             - .:/var/www/html
         extra_hosts:

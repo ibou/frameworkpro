@@ -11,6 +11,7 @@ class PostsController extends AbstractController
 {
   public function show(int $id): Response
   {
+
     return $this->render("post.html.twig", [
       'postId' => $id
     ]);

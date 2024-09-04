@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace HibouTech\Framework\Http;
 
-use FastRoute\RouteCollector;
+use Doctrine\DBAL\Connection;
 use HibouTech\Framework\Routing\RouterInterface;
 use Psr\Container\ContainerInterface;
 

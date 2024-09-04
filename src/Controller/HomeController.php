@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Widget;
+use Doctrine\DBAL\Connection;
 use HibouTech\Framework\Controller\AbstractController;
 use HibouTech\Framework\Http\Response;
 

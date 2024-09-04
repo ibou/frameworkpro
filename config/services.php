@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use Doctrine\DBAL\Connection;
 use HibouTech\Framework\Controller\AbstractController;
+use HibouTech\Framework\Dbal\ConnectionFactory;
 use HibouTech\Framework\Http\Kernel;
 use HibouTech\Framework\Routing\Router;
 use HibouTech\Framework\Routing\RouterInterface;
@@ -23,6 +25,7 @@ $appEnv = $_SERVER['APP_ENV'];
 $templatesPath = BASE_PATH . '/templates';
 
 $container->add('APP_ENV', new \League\Container\Argument\Literal\StringArgument($appEnv));
+$databaseUrl = 'pdo-sqlite:///' . BASE_PATH . '/var/db.sqlite'; 
 
 
 $container->add(RouterInterface::class, Router::class);
@@ -46,7 +49,15 @@ $container->addShared('twig', Environment::class)
 
 $container->add(AbstractController::class);
 
-$container->inflector(\HibouTech\Framework\Controller\AbstractController::class)
+$container->inflector(AbstractController::class)
   ->invokeMethod('setContainer', [$container]);
 
+$container->add(ConnectionFactory::class)
+  ->addArguments([
+    new \League\Container\Argument\Literal\StringArgument($databaseUrl)
+  ]);
+
+$container->addShared(Connection::class, function () use ($container): Connection {
+  return $container->get(ConnectionFactory::class)->create();
+});
 return $container;

@@ -23,7 +23,6 @@
         "symfony/var-dumper": "^7.1"
     },
     "require": {
-        "hiboutech/php-framework-pro": "dev-main"
-
+        "hiboutech/php-framework-pro": "dev-main" 
     }
 }
