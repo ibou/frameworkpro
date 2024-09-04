@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace HibouTech\Framework\Http;
 
 use Doctrine\DBAL\Connection;
+use HibouTech\Framework\Http\Middleware\RequestHandlerInterface;
 use HibouTech\Framework\Routing\RouterInterface;
 use Psr\Container\ContainerInterface;
 
@@ -17,7 +18,8 @@ class Kernel
 
   public function __construct(
     private RouterInterface $router,
-    private ContainerInterface $container
+    private ContainerInterface $container,
+    private RequestHandlerInterface $requestHandler
   ) {
     $this->appEnv = $this->container->get('APP_ENV');
   }
@@ -25,16 +27,10 @@ class Kernel
   public function handle(Request $request): Response
   {
     try {
-
-      [$routeHandler, $vars] = $this->router->dispatch($request, $this->container);
-
-      $response = call_user_func_array($routeHandler, $vars);
+      $response = $this->requestHandler->handle($request);
     } catch (\Exception $exception) {
       $response = $this->createExceptionResponse($exception);
     }
-    // catch (\Exception $exception) {
-    //   $response = new Response($exception->getMessage(), $exception->getCode());
-    // }
 
     return $response;
   }

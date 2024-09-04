@@ -6,6 +6,7 @@ namespace HibouTech\Framework\Routing;
 
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
+use HibouTech\Framework\Controller\AbstractController;
 use HibouTech\Framework\Http\HttpException;
 use HibouTech\Framework\Http\HttpRequestMethodException;
 use HibouTech\Framework\Http\Request;
@@ -26,6 +27,9 @@ class Router implements RouterInterface
     if (\is_array($handler)) {
       [$controllerId, $method] = $handler;
       $controller = $container->get($controllerId);
+      if(\is_subclass_of($controller, AbstractController::class)){ 
+        $controller->setRequest($request);
+      }
       $handler = [$controller, $method];
     }
 
@@ -67,6 +71,4 @@ class Router implements RouterInterface
         throw $e;
     }
   }
-
-
 }
