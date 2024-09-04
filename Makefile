@@ -43,3 +43,6 @@ shell-app:
 
 tests:
 	docker exec -it php-framework-app sh -c "cd framework && vendor/bin/phpunit tests --colors"
+
+domimi:
+	docker exec php-framework-app php bin/console database:migrations:migrate
