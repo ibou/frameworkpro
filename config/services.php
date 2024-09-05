@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Doctrine\DBAL\Connection;
+use HibouTech\Framework\Authentication\SessionAuthInterface;
 use HibouTech\Framework\Console\Application;
 use HibouTech\Framework\Console\Command\MigrateDatabase;
 use HibouTech\Framework\Controller\AbstractController;
@@ -15,10 +16,8 @@ use HibouTech\Framework\Routing\RouterInterface;
 use HibouTech\Framework\Session\Session;
 use HibouTech\Framework\Session\SessionInterface;
 use HibouTech\Framework\Template\TwigFactory;
-use League\Container\Argument\Literal\ArrayArgument;
-use League\Container\Argument\Literal\StringArgument;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+
+use League\Container\Argument\Literal\StringArgument; 
 
 $dotenv = new \Symfony\Component\Dotenv\Dotenv();
 $dotenv->load(dirname(__DIR__) . '/.env');
@@ -40,12 +39,6 @@ $container->add(
 );
 
 $container->add(RouterInterface::class, Router::class);
-
-$container->extend(RouterInterface::class)
-  ->addMethodCall(
-    'setRoutes',
-    [new ArrayArgument($routes)]
-  );
 
 $container->add(RequestHandlerInterface::class, RequestHandler::class)
   ->addArgument($container);
@@ -105,5 +98,14 @@ $container->add(\HibouTech\Framework\Http\Middleware\RouterDispatch::class)
     RouterInterface::class,
     $container
   ]);
+
+$container->add(\HibouTech\Framework\Authentication\SessionAuthentication::class)
+  ->addArguments([
+  \App\Repository\UserRepository::class,
+    \HibouTech\Framework\Session\SessionInterface::class
+  ]);
+
+  $container->add(\HibouTech\Framework\Http\Middleware\ExtractRouteInfo::class)
+  ->addArgument(new \League\Container\Argument\Literal\ArrayArgument($routes));
 
 return $container;

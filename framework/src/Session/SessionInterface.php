@@ -23,4 +23,7 @@ interface SessionInterface
   public function hasFlash(string $type): bool;
 
   public function clearFlash(): void;
+  
+  public function isAuthenticated(): bool;
+
 }

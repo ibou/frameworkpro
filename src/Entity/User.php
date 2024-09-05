@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-class User
+use HibouTech\Framework\Authentication\AuthUserInterface;
+
+class User implements AuthUserInterface
 {
 
   public function __construct(

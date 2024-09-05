@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Form\User\RegistrationForm;
 use App\Repository\UserMapper;
+use HibouTech\Framework\Authentication\SessionAuthentication;
 use HibouTech\Framework\Controller\AbstractController;
 use HibouTech\Framework\Http\RedirectResponse;
 use HibouTech\Framework\Http\Response;
@@ -14,7 +14,8 @@ use HibouTech\Framework\Http\Response;
 class RegistrationController extends AbstractController
 {
   public function __construct(
-    private UserMapper $userMapper
+    private UserMapper $userMapper,
+    private SessionAuthentication $authComponent,
   ) {}
   public function index(): Response
   {
@@ -22,15 +23,14 @@ class RegistrationController extends AbstractController
   }
 
   public function register(): Response
-  { 
+  {
 
-    // $user = User::create($username, $password);
     $form = new RegistrationForm($this->userMapper);
     $form->setFields(
       $this->request->input('username'),
       $this->request->input('password')
     );
- 
+
     // Validate
     // If validation errors,
     if ($form->hasValidationErrors()) {
@@ -40,13 +40,20 @@ class RegistrationController extends AbstractController
       }
       return new RedirectResponse('/register');
     }
-  
-    $user = $form->save();
-    $this->request->getSession()->setFlash(
-      'success', 
-      sprintf('User with username "%s" was created...', $user->getUsername())
-      );
 
-    return new RedirectResponse('/');
+    // register the user by calling $form->save()
+    $user = $form->save();
+
+    // Add a session success message
+    $this->request->getSession()->setFlash(
+      'success',
+      sprintf('User %s created', $user->getUsername())
+    );
+
+    // Log the user in
+    $this->authComponent->login($user);
+
+    // Redirect to somewhere useful
+    return new RedirectResponse('/dashboard');
   }
 }
