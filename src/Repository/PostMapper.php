@@ -6,15 +6,15 @@ namespace App\Repository;
 
 use App\Entity\Post;
 use Doctrine\DBAL\Connection;
-
+use HibouTech\Framework\Dbal\DataMapper;
 
 class PostMapper
 {
-  public function __construct(private Connection $connection) {}
+  public function __construct(private DataMapper $dataMapper) {}
 
   public function save(Post $post): void
   {
-    $stmt = $this->connection->prepare("
+    $stmt = $this->dataMapper->getConnection()->prepare("
             INSERT INTO posts (title, body, created_at)
             VALUES (:title, :body, :created_at) 
         ");
@@ -25,7 +25,7 @@ class PostMapper
 
     $stmt->executeStatement();
 
-    $id = (int)$this->connection->lastInsertId();
+    $id = (int)$this->dataMapper->save($post);
 
     $post->setId($id);
   }

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-class Post
+use HibouTech\Framework\Dbal\Entity;
+
+class Post extends Entity
 {
   public function __construct(
     private ?int $id,

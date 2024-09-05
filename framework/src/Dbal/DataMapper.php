@@ -23,10 +23,8 @@ class DataMapper
   public function save(Entity $subject): int|string|null
   {
     // Dispatch PostPersist event
-    //$this->eventDispatcher->dispatch(new PostPersist($subject));
-
-    //dump($subject, "SUBJEC POST PERSISTE", $this->connection->lastInsertId());
+    $this->eventDispatcher->dispatch(new PostPersist($subject)); 
     // Return lastInsertId
-    //return $this->connection->lastInsertId();
+    return $this->connection->lastInsertId();
   }
 }

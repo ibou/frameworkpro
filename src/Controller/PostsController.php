@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Post;
-use App\Entity\PostMapper;
+use App\Repository\PostMapper;
 use App\Repository\PostRepository;
 use HibouTech\Framework\Controller\AbstractController;
 use HibouTech\Framework\Http\RedirectResponse;
