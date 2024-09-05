@@ -11,8 +11,14 @@ class Session implements SessionInterface
 
   public function start(): void
   {
-    if (session_status() === PHP_SESSION_NONE) {
-      session_start();
+    if (session_status() === PHP_SESSION_ACTIVE) {
+      return;
+    }
+
+    session_start();
+
+    if (!$this->has('csrf_token')) {
+      $this->set('csrf_token', bin2hex(random_bytes(32)));
     }
   }
 

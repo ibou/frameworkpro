@@ -24,13 +24,15 @@ $dotenv->load(dirname(__DIR__) . '/.env');
 $container = new \League\Container\Container();
 $container->delegate(new \League\Container\ReflectionContainer(true));
 
+$basePath = dirname(__DIR__);
+$container->add('basePath', new \League\Container\Argument\Literal\StringArgument($basePath));
 # parameters for application configuration
-$routes = include BASE_PATH . '/routes/web.php';
+$routes = include $basePath . '/routes/web.php';
 $appEnv = $_SERVER['APP_ENV'];
-$templatesPath = BASE_PATH . '/templates';
+$templatesPath = $basePath . '/templates';
 
 $container->add('APP_ENV', new \League\Container\Argument\Literal\StringArgument($appEnv));
-$databaseUrl = 'pdo-sqlite:///' . BASE_PATH . '/var/db.sqlite';
+$databaseUrl = 'pdo-sqlite:///' . $basePath . '/var/db.sqlite';
 
 $container->add(
   'base-commands-namespace',
@@ -92,7 +94,7 @@ $container->add(
   'database:migrations:migrate',
   MigrateDatabase::class
 )->addArgument(\Doctrine\DBAL\Connection::class)
-  ->addArgument(new StringArgument(BASE_PATH . '/migrations'))
+  ->addArgument(new StringArgument($basePath . '/migrations'))
 ;
 //RouterDispatcher
 $container->add(\HibouTech\Framework\Http\Middleware\RouterDispatch::class)

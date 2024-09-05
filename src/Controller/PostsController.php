@@ -40,7 +40,7 @@ class PostsController extends AbstractController
   {
     $title = $this->request->postParams['title'];
     $body = $this->request->postParams['body'];
-
+ 
     $post = Post::create($title, $body);
 
     $this->postMapper->save($post);
