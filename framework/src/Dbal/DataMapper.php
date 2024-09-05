@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace HibouTech\Framework\Dbal;
 
 use Doctrine\DBAL\Connection;
+use HibouTech\Framework\Dbal\Event\PostPersist;
+use HibouTech\Framework\EventDispatcher\EventDispatcher;
 
 class DataMapper
 {
   public function __construct(
-    private Connection $connection
+    private Connection $connection,
+    private EventDispatcher $eventDispatcher
   ) {}
 
   public function getConnection(): Connection
@@ -22,7 +25,8 @@ class DataMapper
     // Dispatch PostPersist event
     //$this->eventDispatcher->dispatch(new PostPersist($subject));
 
+    //dump($subject, "SUBJEC POST PERSISTE", $this->connection->lastInsertId());
     // Return lastInsertId
-    return $this->connection->lastInsertId();
+    //return $this->connection->lastInsertId();
   }
 }

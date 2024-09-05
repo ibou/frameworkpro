@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "8592ef671d2f1f7a368d3bd5e0c1201c9a920ece"
+                "reference": "1873264825d89e4a72e73c414c4afb467d03301f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/8592ef671d2f1f7a368d3bd5e0c1201c9a920ece",
-                "reference": "8592ef671d2f1f7a368d3bd5e0c1201c9a920ece",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/1873264825d89e4a72e73c414c4afb467d03301f",
+                "reference": "1873264825d89e4a72e73c414c4afb467d03301f",
                 "shasum": ""
             },
             "require": {
@@ -112,7 +112,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-03T07:38:38+00:00"
+            "time": "2024-09-04T17:44:02+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -168,13 +168,14 @@
             "dist": {
                 "type": "path",
                 "url": "framework",
-                "reference": "9d22b5e3c805a21f564ff11c560b4021d169cf1b"
+                "reference": "6089b7d96dfe42d3315a0c2335a96b9595fe8e24"
             },
             "require": {
                 "doctrine/dbal": "5.0.x-dev",
                 "league/container": "5.x-dev",
                 "nikic/fast-route": "dev-master",
                 "psr/container": "^2.0@dev",
+                "psr/event-dispatcher": "^1.0",
                 "symfony/dotenv": "7.2.x-dev",
                 "twig/twig": "4.x-dev"
             },
@@ -194,7 +195,7 @@
                 }
             },
             "scripts": {
-                "test": [
+                "tests": [
                     "vendor/bin/phpunit tests --colors"
                 ]
             },
@@ -465,6 +466,59 @@
                 "source": "https://github.com/php-fig/container"
             },
             "time": "2023-09-22T11:11:30+00:00"
+        },
+        {
+            "name": "psr/event-dispatcher",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/event-dispatcher.git",
+                "reference": "bbd9eacc080d33861e5b5c75b3b8c4d7e6d01874"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/event-dispatcher/zipball/bbd9eacc080d33861e5b5c75b3b8c4d7e6d01874",
+                "reference": "bbd9eacc080d33861e5b5c75b3b8c4d7e6d01874",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.0"
+            },
+            "suggest": {
+                "fig/event-dispatcher-util": "Provides some useful PSR-14 utilities"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\EventDispatcher\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Standard interfaces for event handling.",
+            "keywords": [
+                "events",
+                "psr",
+                "psr-14"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/event-dispatcher"
+            },
+            "time": "2024-03-17T21:29:03+00:00"
         },
         {
             "name": "psr/log",
@@ -955,12 +1009,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "1383c09982230079bc6e515c7e64d14b5d28827d"
+                "reference": "2a8cf65d251badace9cbf24dfb23f1da7eace53c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/1383c09982230079bc6e515c7e64d14b5d28827d",
-                "reference": "1383c09982230079bc6e515c7e64d14b5d28827d",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/2a8cf65d251badace9cbf24dfb23f1da7eace53c",
+                "reference": "2a8cf65d251badace9cbf24dfb23f1da7eace53c",
                 "shasum": ""
             },
             "require": {
@@ -971,8 +1025,7 @@
                 "symfony/polyfill-php81": "^1.29"
             },
             "require-dev": {
-                "psr/container": "^1.0|^2.0",
-                "symfony/phpunit-bridge": "^7.2"
+                "psr/container": "^1.0|^2.0"
             },
             "type": "library",
             "autoload": {
@@ -1020,7 +1073,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-04T08:29:33+00:00"
+            "time": "2024-09-04T10:11:53+00:00"
         }
     ],
     "packages-dev": [

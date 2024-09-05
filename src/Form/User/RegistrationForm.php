@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Form\User;
 
 use App\Entity\User;
-use App\Repository\UserMapper;
+use App\Entity\UserMapper;
 
 class RegistrationForm
 {

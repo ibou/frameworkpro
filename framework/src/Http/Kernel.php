@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace HibouTech\Framework\Http;
 
-use Doctrine\DBAL\Connection;
+use HibouTech\Framework\EventDispatcher\EventDispatcher;
+use HibouTech\Framework\Http\Event\ResponseEvent;
 use HibouTech\Framework\Http\Middleware\RequestHandlerInterface;
-use HibouTech\Framework\Routing\RouterInterface;
 use Psr\Container\ContainerInterface;
-
-use function FastRoute\simpleDispatcher;
 
 class Kernel
 {
@@ -17,9 +15,10 @@ class Kernel
   private string $appEnv;
 
   public function __construct(
-    private RouterInterface $router,
     private ContainerInterface $container,
-    private RequestHandlerInterface $requestHandler
+    private RequestHandlerInterface $requestHandler,
+    private EventDispatcher $eventDispatcher
+
   ) {
     $this->appEnv = $this->container->get('APP_ENV');
   }
@@ -32,6 +31,7 @@ class Kernel
       $response = $this->createExceptionResponse($exception);
     }
 
+    $this->eventDispatcher->dispatch(new ResponseEvent($request, $response));
     return $response;
   }
 
@@ -52,5 +52,4 @@ class Kernel
   {
     $request->getSession()?->clearFlash();
   }
-
 }

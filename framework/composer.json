@@ -29,9 +29,10 @@
     "league/container": "5.x-dev",
     "symfony/dotenv": "7.2.x-dev",
     "twig/twig": "4.x-dev",
-    "doctrine/dbal": "5.0.x-dev"
+    "doctrine/dbal": "5.0.x-dev",
+    "psr/event-dispatcher": "^1.0"
   },
   "scripts": {
-    "test": "vendor/bin/phpunit tests --colors"
+    "tests": "vendor/bin/phpunit tests --colors"
   }
 }

@@ -10,9 +10,19 @@ define('BASE_PATH', dirname(__DIR__));
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $container = include BASE_PATH . '/config/services.php';
- 
-$kernel = $container->get(Kernel::class); 
+$eventDispatcher = $container->get(\HibouTech\Framework\EventDispatcher\EventDispatcher::class);
+$eventDispatcher
+->addListener(
+  \HibouTech\Framework\Http\Event\ResponseEvent::class,
+  new \App\EventListener\InternalErrorListener()
+)
+->addListener(
+  \HibouTech\Framework\Http\Event\ResponseEvent::class,
+  new \App\EventListener\ContentLengthListener()
+);
+
 $request = Request::createFromGlobals();
+$kernel = $container->get(Kernel::class); 
 
 $response = $kernel->handle($request);
 $response->send();
