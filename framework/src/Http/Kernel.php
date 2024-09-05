@@ -47,4 +47,10 @@ class Kernel
 
     return new Response('Server error', Response::HTTP_INTERNAL_SERVER_ERROR);
   }
+
+  public function terminate(Request $request, Response $response): void
+  {
+    $request->getSession()?->clearFlash();
+  }
+
 }

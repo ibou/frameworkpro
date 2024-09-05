@@ -1,11 +1,13 @@
 <?php
 
-declare(strict_types=1);  
+declare(strict_types=1);
 
 namespace HibouTech\Framework\Session;
 
 interface SessionInterface
 {
+  public function start(): void;
+
   public function set(string $key, $value): void;
 
   public function get(string $key, $default = null);
@@ -22,4 +24,3 @@ interface SessionInterface
 
   public function clearFlash(): void;
 }
-  

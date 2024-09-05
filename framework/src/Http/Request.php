@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace HibouTech\Framework\Http;
 
+use HibouTech\Framework\Session\Session;
+use HibouTech\Framework\Session\SessionInterface;
+
 class Request
 {
+
+  private SessionInterface $session;
 
   public function __construct(
     public readonly array $getParams,
@@ -34,5 +39,20 @@ class Request
   public function getMethod(): string
   {
     return $this->server['REQUEST_METHOD'];
+  }
+
+  public function getSession(): SessionInterface
+  {
+    return $this->session;
+  }
+
+  public function setSession(SessionInterface $session): void
+  {
+    $this->session = $session;
+  }
+
+  public function input($key): mixed
+  {
+    return $this->postParams[$key] ?? null;
   }
 }

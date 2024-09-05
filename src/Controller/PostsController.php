@@ -45,7 +45,10 @@ class PostsController extends AbstractController
 
     $this->postMapper->save($post);
 
-    $this->session->setFlash('success', \sprintf('Post with title "%s" was created', $title)); 
+    $this->request->getSession()->setFlash(
+      'success', 
+      \sprintf('Post with title "%s" was created...', $title)
+      );
 
     return new RedirectResponse('/posts');
   }

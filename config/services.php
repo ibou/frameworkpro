@@ -99,5 +99,11 @@ $container->add(
 )->addArgument(\Doctrine\DBAL\Connection::class)
   ->addArgument(new StringArgument(BASE_PATH . '/migrations'))
 ;
+//RouterDispatcher
+$container->add(\HibouTech\Framework\Http\Middleware\RouterDispatch::class)
+  ->addArguments([
+    RouterInterface::class,
+    $container
+  ]);
 
 return $container;
