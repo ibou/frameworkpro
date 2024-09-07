@@ -10,11 +10,10 @@ COLOR_COMMENT		= \033[33m
 COLOR_TITLE_BLOCK	= \033[0;44m\033[37m
 
 #---SYMFONY--#
-DOCKER_PHP = docker exec -it php bash
+DOCKER_PHP = docker exec -it php83 bash
 #------------#
  
 DOCKER_COMPOSE = docker-compose -p php-framework
-APP = docker exec -it php-framework-app
 #---PHPUNIT-#
 PHPUNIT = vendor/bin/phpunit
 #------------#
@@ -42,7 +41,7 @@ shell-app:
 	@$(DOCKER_PHP)
 
 tests:
-	docker exec -it php sh -c "cd framework && vendor/bin/phpunit tests --colors"
+	docker exec -it php83 sh -c "cd framework && vendor/bin/phpunit tests --colors"
 
 domimi:
-	docker exec php-framework-app php bin/console database:migrations:migrate
+	docker exec php83 php bin/console database:migrations:migrate
