@@ -19,11 +19,6 @@ RUN useradd -u 1000 -ms /bin/bash -g app app
 # change owner
 RUN chown -R app:app /var/www/html
 
-
-
-
-
-
 WORKDIR /var/www/html
 
 CMD ["php-fpm"]
